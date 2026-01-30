@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:17
+    container_name: 4testing-pg-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_DATABASE:-4testing}
+    ports:
+      - '5433:5432'
+    volumes:
+      - 4testing-pg-data:/var/lib/postgresql/data
+
+volumes:
+  4testing-pg-data:
