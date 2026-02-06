@@ -2,6 +2,7 @@
   "name": "4testing",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.x.x",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma migrate deploy && next build --turbopack",
