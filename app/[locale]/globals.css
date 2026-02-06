@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020617; /* bg-slate-950 相当 */
+  --foreground: #ededed;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /* アクセントカラーを定義 */
+  --color-accent: #165e83;
+  --color-accent-light: #2d9ba8; /* グラデーションの相方用 */  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
