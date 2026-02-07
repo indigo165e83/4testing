@@ -34,22 +34,16 @@ export default async function CategoriesPage() {
             </h2>
             <form action={createCategory} className="flex flex-wrap gap-4 items-end">
               <div className="w-32">
-                <label className="text-xs font-bold text-gray-500 mb-1 block">ID (Slug)</label>
-                <div className="relative">
-                  <Hash size={14} className="absolute left-3 top-3 text-gray-500" />
-                  <input name="slug" placeholder="os" required className="w-full bg-black/40 border border-white/10 rounded-xl pl-8 pr-4 py-2.5 text-sm focus:border-accent outline-none" />
-                </div>
+                <label className="text-xs font-bold text-gray-500 mb-1 block">Slug (必須)</label>
+                <input name="slug" placeholder="color" required className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-accent outline-none" />
               </div>
               <div className="flex-1 min-w-[200px]">
                 <label className="text-xs font-bold text-gray-500 mb-1 block">日本語名 (必須)</label>
-                <input name="nameJa" placeholder="OS" required className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-accent outline-none" />
+                <input name="nameJa" placeholder="色" required className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-accent outline-none" />
               </div>
               <div className="flex-1 min-w-[200px]">
                 <label className="text-xs font-bold text-gray-500 mb-1 block">英語名 (任意)</label>
-                <div className="relative">
-                  <Globe size={14} className="absolute left-3 top-3 text-gray-500" />
-                  <input name="nameEn" placeholder="Operating System" className="w-full bg-black/40 border border-white/10 rounded-xl pl-8 pr-4 py-2.5 text-sm focus:border-accent outline-none" />
-                </div>
+                <input name="nameEn" placeholder="Color" className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-accent outline-none" />
               </div>
               <button type="submit" className="bg-accent hover:bg-accent-light text-white px-6 py-2.5 rounded-xl font-bold transition-all">
                 作成
@@ -93,9 +87,9 @@ export default async function CategoriesPage() {
                 <div className="px-5 py-4 bg-black/20 border-b border-white/5">
                   <form action={addItem} className="flex gap-2 items-center">
                     <input type="hidden" name="categoryId" value={category.id} />
-                    <input name="slug" placeholder="ID (win11)" required className="w-24 bg-transparent border-b border-white/20 px-2 py-1 text-xs text-gray-300 focus:border-accent outline-none" />
-                    <input name="nameJa" placeholder="日本語 (Win11)" required className="flex-1 bg-transparent border-b border-white/20 px-2 py-1 text-xs text-gray-300 focus:border-accent outline-none" />
-                    <input name="nameEn" placeholder="英語 (Win11)" className="flex-1 bg-transparent border-b border-white/20 px-2 py-1 text-xs text-gray-300 focus:border-accent outline-none" />
+                    <input name="slug" placeholder="Slug (red)" required className="w-24 bg-transparent border-b border-white/20 px-2 py-1 text-xs text-gray-300 focus:border-accent outline-none" />
+                    <input name="nameJa" placeholder="日本語 (赤)" required className="flex-1 bg-transparent border-b border-white/20 px-2 py-1 text-xs text-gray-300 focus:border-accent outline-none" />
+                    <input name="nameEn" placeholder="英語 (Red)" className="flex-1 bg-transparent border-b border-white/20 px-2 py-1 text-xs text-gray-300 focus:border-accent outline-none" />
                     <button type="submit" className="text-accent hover:text-white p-1">
                       <Plus size={18} />
                     </button>
