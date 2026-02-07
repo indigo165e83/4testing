@@ -69,3 +69,22 @@ model VerificationToken {
 }
 
 // --- Custom Model for Your Application ---
+model Category {
+  id        String         @id @default(cuid())
+  slug      String         @unique // システム識別用 (例: "os", "browser")
+  names     Json           // 多言語名 { "ja": "...", "en": "..." }
+  items     CategoryItem[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+model CategoryItem {
+  id         String   @id @default(cuid())
+  slug       String   // 項目識別用 (例: "win11", "chrome")
+  names      Json     // 多言語名 { "ja": "...", "en": "..." }
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([categoryId, slug]) // 同じカテゴリ内で同じslugは禁止
+}
