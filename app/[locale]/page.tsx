@@ -2,10 +2,17 @@ import { auth, signIn, signOut } from '@/auth';
 import { getTranslations } from 'next-intl/server';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { ToolCard } from '@/components/ToolCard';
-import { Fingerprint, UserCircle, FileText, Database, Zap, Layers, List } from 'lucide-react';
+import { Fingerprint, UserCircle, FileText, Database, Zap, Layers, List, Clock } from 'lucide-react';
 
 // ツールデータの定義
 const dataGenTools = [
+  {
+    title: 'Timestamp 変換',
+    description: 'Unix Timestampと日時(JST/UTC)を相互変換。',
+    icon: Clock,
+    href: '/tools/timestamp',
+    category: 'Data Generation'
+  },  
   {
     title: 'ダミーユーザー作成',
     description: '氏名、住所、電話番号などのプロフィールをランダム生成。',
