@@ -24,12 +24,12 @@ export const docsNav: Record<string, DocSection[]> = {
   ],
   en: [
     {
-      title: 'QA Fundamentals',
+      title: 'Terms and Concepts',
       items: [
         {
-          title: 'ISO/IEC 25010 Quality Characteristics',
+          title: 'Product Quality Characteristics (ISO/IEC 25010:2023 edition)',
           slug: 'product-quality-characteristics',
-          description: 'Product quality characteristics and sub-characteristics defined by ISO/IEC 25010 (2023)',
+          description: 'List of Product Quality Characteristics and Sub-characteristics Defined by ISO/IEC 25010:2023',
         },
       ],
     },
