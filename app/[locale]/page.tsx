@@ -2,7 +2,8 @@ import { auth, signIn, signOut } from '@/auth';
 import { getTranslations } from 'next-intl/server';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { ToolCard } from '@/components/ToolCard';
-import { Fingerprint, UserCircle, FileText, Database, Zap, Layers, List, Clock } from 'lucide-react';
+import { Fingerprint, UserCircle, Zap, Layers, List, Clock, BookOpen } from 'lucide-react';
+import Link from 'next/link';
 
 // ツールデータの定義
 const dataGenTools = [
@@ -93,6 +94,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
 
           <div className="flex items-center gap-4">
+            <Link
+              href={`/${locale}/docs`}
+              className="flex items-center gap-1.5 text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              <BookOpen size={15} />
+              <span>Documents</span>
+            </Link>
             <LanguageSwitcher locale={locale} />
             <div>
               {session?.user ? (

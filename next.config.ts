@@ -7,7 +7,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 const nextConfig: NextConfig = {
   /* config options here */
   // i18n設定など、他の設定をここに追加できます
-  // i18n: { ... }, 
+  // i18n: { ... },
   images: {
     // 許可するホスト名（ドメイン）のリスト
     remotePatterns: [
