@@ -18,6 +18,8 @@ export async function generateStaticParams() {
     { locale: 'en', sectionSlug: 'glossary', slug: '7-main-activities-test-process' },
     { locale: 'ja', sectionSlug: 'glossary', slug: 'user-story-and-invest' },
     { locale: 'en', sectionSlug: 'glossary', slug: 'user-story-and-invest' },
+    { locale: 'ja', sectionSlug: 'glossary', slug: 'test-techniques-v3.1.1' },
+    { locale: 'en', sectionSlug: 'glossary', slug: 'test-techniques-v3.1.1' },
     { locale: 'ja', sectionSlug: 'links', slug: 'official-sites' },
     { locale: 'en', sectionSlug: 'links', slug: 'official-sites' },
   ]

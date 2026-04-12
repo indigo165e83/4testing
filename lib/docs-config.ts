@@ -37,6 +37,11 @@ export const docsNav: Record<string, DocSection[]> = {
           description: 'ユーザーストーリーの概念と良いストーリーの基準INVEST',
         },
         {
+          title: 'テスト技法（JSTQB AL TA v3.1.1）',
+          slug: 'test-techniques-v3.1.1',
+          description: 'JSTQB AL テストアナリスト シラバスv3.1.1で定義されているテスト技法のまとめ',
+        },
+        {
           title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
           slug: 'product-quality-characteristics',
           description: 'ISO/IEC 25010（2023年版）が定義するプロダクト品質特性と副特性の一覧',
