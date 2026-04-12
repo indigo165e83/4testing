@@ -23,10 +23,10 @@ export function DocsSidebar({ locale }: DocsSidebarProps) {
             {/* セクションタイトル（クリックでセクションTOPへ） */}
             <Link
               href={sectionHref}
-              className={`mb-1 block px-2 py-1 text-xs font-semibold uppercase tracking-wider transition-colors ${
+              className={`mb-1 block px-2 py-1 text-md font-bold transition-colors ${
                 isSectionActive
-                  ? 'text-accent'
-                  : 'text-gray-500 hover:text-gray-300'
+                  ? 'text-accent-light'
+                  : 'text-accent-light/80 hover:text-accent-light'
               }`}
             >
               {section.title}
