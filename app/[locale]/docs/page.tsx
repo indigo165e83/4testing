@@ -1,6 +1,13 @@
 import Link from 'next/link'
-import { BookOpen } from 'lucide-react'
+import { BookOpen, Link2, ChevronRight } from 'lucide-react'
 import { docsNav } from '@/lib/docs-config'
+
+const sectionIcons: Record<string, React.ElementType> = {
+  '用語と概念': BookOpen,
+  'Terms and Concepts': BookOpen,
+  'リンク集': Link2,
+  'Links': Link2,
+}
 
 export default async function DocsIndexPage({
   params,
@@ -13,30 +20,33 @@ export default async function DocsIndexPage({
   return (
     <div>
       <h1 className="text-2xl font-bold mb-2">Documents</h1>
-      <p className="text-gray-400 mb-8 not-prose">QAに関する用語と概念のまとめページです。</p>
+      <p className="text-gray-400 mb-8 not-prose">QAに関する参考資料・ガイドライン</p>
 
-      {sections.map((section) => (
-        <div key={section.title} className="mb-8 not-prose">
-          <h2 className="mb-4 text-base font-semibold text-accent">{section.title}</h2>
-          <div className="grid gap-3">
-            {section.items.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/${locale}/docs/${item.slug}`}
-                className="flex items-start gap-3 rounded-lg border border-white/10 p-4 transition-all hover:border-accent/40 hover:bg-white/5"
-              >
-                <BookOpen size={18} className="mt-0.5 shrink-0 text-accent" />
-                <div>
-                  <div className="font-medium text-white">{item.title}</div>
-                  {item.description && (
-                    <div className="mt-0.5 text-sm text-gray-400">{item.description}</div>
-                  )}
+      <div className="not-prose space-y-3">
+        {sections.map((section) => {
+          const Icon = sectionIcons[section.title] ?? BookOpen
+          return (
+            <Link
+              key={section.slug}
+              href={`/${locale}/docs/${section.slug}`}
+              className="flex items-center justify-between gap-4 rounded-xl border border-white/10 px-5 py-4 transition-all hover:border-accent/40 hover:bg-white/5"
+            >
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-accent/15 p-2">
+                  <Icon size={18} className="text-accent" />
                 </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      ))}
+                <div>
+                  <div className="font-semibold text-white">{section.title}</div>
+                  <div className="mt-0.5 text-xs text-gray-400">
+                    {section.items.length}件のドキュメント
+                  </div>
+                </div>
+              </div>
+              <ChevronRight size={16} className="shrink-0 text-gray-500" />
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }

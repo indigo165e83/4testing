@@ -7,12 +7,13 @@ import type { ReactElement } from 'react'
 
 export async function loadDoc(
   locale: string,
+  sectionSlug: string,
   slug: string
 ): Promise<ReactElement | null> {
   // ロケール固有ファイルを優先し、なければ日本語にフォールバック
   const candidates = [
-    path.join(process.cwd(), 'content', 'docs', locale, `${slug}.mdx`),
-    path.join(process.cwd(), 'content', 'docs', 'ja', `${slug}.mdx`),
+    path.join(process.cwd(), 'content', 'docs', locale, sectionSlug, `${slug}.mdx`),
+    path.join(process.cwd(), 'content', 'docs', 'ja', sectionSlug, `${slug}.mdx`),
   ]
 
   let source: string | null = null

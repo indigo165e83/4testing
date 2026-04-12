@@ -6,6 +6,7 @@ export interface DocItem {
 
 export interface DocSection {
   title: string
+  slug: string
   items: DocItem[]
 }
 
@@ -13,6 +14,7 @@ export const docsNav: Record<string, DocSection[]> = {
   ja: [
     {
       title: '用語と概念',
+      slug: 'glossary',
       items: [
         {
           title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
@@ -21,15 +23,38 @@ export const docsNav: Record<string, DocSection[]> = {
         },
       ],
     },
+    {
+      title: 'リンク集',
+      slug: 'links',
+      items: [
+        {
+          title: 'QA関連サイトのリンク集',
+          slug: 'official-sites',
+          description: 'QA関連の公式サイト・参考リソース一覧',
+        },
+      ],
+    },
   ],
   en: [
     {
       title: 'Terms and Concepts',
+      slug: 'glossary',
       items: [
         {
-          title: 'Product Quality Characteristics (ISO/IEC 25010:2023 edition)',
+          title: 'Product Quality Characteristics (ISO/IEC 25010:2023)',
           slug: 'product-quality-characteristics',
           description: 'List of Product Quality Characteristics and Sub-characteristics Defined by ISO/IEC 25010:2023',
+        },
+      ],
+    },
+    {
+      title: 'Links',
+      slug: 'links',
+      items: [
+        {
+          title: 'Official Sites (JSTQB / ISTQB)',
+          slug: 'official-sites',
+          description: 'Official sites and reference resources for QA',
         },
       ],
     },
