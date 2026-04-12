@@ -10,6 +10,8 @@ export async function generateStaticParams() {
   return [
     { locale: 'ja', sectionSlug: 'glossary', slug: 'product-quality-characteristics' },
     { locale: 'en', sectionSlug: 'glossary', slug: 'product-quality-characteristics' },
+    { locale: 'ja', sectionSlug: 'glossary', slug: 'error-defect-failure' },
+    { locale: 'en', sectionSlug: 'glossary', slug: 'error-defect-failure' },
     { locale: 'ja', sectionSlug: 'links', slug: 'official-sites' },
     { locale: 'en', sectionSlug: 'links', slug: 'official-sites' },
   ]

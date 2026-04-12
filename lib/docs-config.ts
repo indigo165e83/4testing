@@ -17,6 +17,11 @@ export const docsNav: Record<string, DocSection[]> = {
       slug: 'glossary',
       items: [
         {
+          title: 'エラー・欠陥・故障の違いと関係性',
+          slug: 'error-defect-failure',
+          description: 'ソフトウェアテストにおけるエラー／欠陥／故障の定義と関係',
+        },
+        {
           title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
           slug: 'product-quality-characteristics',
           description: 'ISO/IEC 25010（2023年版）が定義するプロダクト品質特性と副特性の一覧',
