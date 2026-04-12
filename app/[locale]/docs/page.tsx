@@ -20,7 +20,7 @@ export default async function DocsIndexPage({
   return (
     <div>
       <h1 className="text-2xl font-bold mb-2">Documents</h1>
-      <p className="text-gray-400 mb-8 not-prose">QAに関する参考資料・ガイドライン</p>
+      <p className="text-gray-400 mb-8 not-prose">QAに関する参考資料・ガイドライン。<br />JSTQBの資格取得時などに得た情報を、実務でも役立つようにまとめています。</p>
 
       <div className="not-prose space-y-3">
         {sections.map((section) => {
