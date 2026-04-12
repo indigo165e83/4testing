@@ -22,6 +22,11 @@ export const docsNav: Record<string, DocSection[]> = {
           description: 'ソフトウェアテストにおけるエラー／欠陥／故障の定義と関係',
         },
         {
+          title: 'テストの7原則',
+          slug: 'testing-principles',
+          description: 'あらゆるテストに適用できる7つの一般的なガイドライン',
+        },
+        {
           title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
           slug: 'product-quality-characteristics',
           description: 'ISO/IEC 25010（2023年版）が定義するプロダクト品質特性と副特性の一覧',

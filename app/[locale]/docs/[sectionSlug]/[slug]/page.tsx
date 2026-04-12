@@ -12,6 +12,8 @@ export async function generateStaticParams() {
     { locale: 'en', sectionSlug: 'glossary', slug: 'product-quality-characteristics' },
     { locale: 'ja', sectionSlug: 'glossary', slug: 'error-defect-failure' },
     { locale: 'en', sectionSlug: 'glossary', slug: 'error-defect-failure' },
+    { locale: 'ja', sectionSlug: 'glossary', slug: 'testing-principles' },
+    { locale: 'en', sectionSlug: 'glossary', slug: 'testing-principles' },
     { locale: 'ja', sectionSlug: 'links', slug: 'official-sites' },
     { locale: 'en', sectionSlug: 'links', slug: 'official-sites' },
   ]
