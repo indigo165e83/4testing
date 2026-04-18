@@ -28,13 +28,6 @@ const dataGenTools = [
     href: '/tools/id-gen',
     category: 'Data Generation'
   },
-  {
-    title: 'オールペア生成',
-    description: 'パラメータと値を設定し、ペアワイズ法で最小テストケースを自動生成。',
-    icon: Shuffle,
-    href: '/tools/pairwise-generator',
-    category: 'Data Generation'
-  },
   /*
   {
     title: '大量テキスト生成',
@@ -67,6 +60,13 @@ const managementTools = [
     description: '登録されているテスト因子と水準を参照します（閲覧のみ）。',
     icon: List,
     href: '/tools/category-list',
+    category: 'Test Management'
+  },
+  {
+    title: 'オールペア生成',
+    description: 'パラメータと値を設定し、ペアワイズ法で最小テストケースを自動生成。',
+    icon: Shuffle,
+    href: '/tools/pairwise-generator',
     category: 'Test Management'
   },
 ];
