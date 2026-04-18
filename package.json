@@ -8,7 +8,10 @@
     "build": "prisma migrate deploy && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test": "playwright test",
+    "test:dev": "TEST_ENV=development playwright test",
+    "test:prod": "TEST_ENV=production playwright test"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
