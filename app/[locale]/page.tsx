@@ -2,7 +2,7 @@ import { auth, signIn, signOut } from '@/auth';
 import { getTranslations } from 'next-intl/server';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { ToolCard } from '@/components/ToolCard';
-import { Fingerprint, UserCircle, Zap, Layers, List, Clock, BookOpen } from 'lucide-react';
+import { Fingerprint, UserCircle, Zap, Layers, List, Clock, BookOpen, Shuffle } from 'lucide-react';
 import Link from 'next/link';
 
 // ツールデータの定義
@@ -26,6 +26,13 @@ const dataGenTools = [
     description: 'テストデータとして必要なUUID(v4)やCUIDを一括生成。',
     icon: Fingerprint,
     href: '/tools/id-gen',
+    category: 'Data Generation'
+  },
+  {
+    title: 'オールペア生成',
+    description: 'パラメータと値を設定し、ペアワイズ法で最小テストケースを自動生成。',
+    icon: Shuffle,
+    href: '/tools/pairwise-generator',
     category: 'Data Generation'
   },
   /*
@@ -59,9 +66,9 @@ const managementTools = [
     title: 'カテゴリ一覧',
     description: '登録されているテスト因子と水準を参照します（閲覧のみ）。',
     icon: List,
-    href: '/tools/category-list', // ★今回追加した閲覧用ページ
+    href: '/tools/category-list',
     category: 'Test Management'
-  }
+  },
 ];
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
