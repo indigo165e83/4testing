@@ -32,6 +32,11 @@ export const docsNav: Record<string, DocSection[]> = {
           description: 'JSTQBシラバスに定義されたテストプロセスの主要な7つの活動と具体例',
         },
         {
+          title: 'テストレベル',
+          slug: 'test-level',
+          description: 'コンポーネントテストから受け入れテストまで、5つのテストレベルの定義と属性',
+        },
+        {
           title: 'ユーザーストーリーとINVEST',
           slug: 'user-story-and-invest',
           description: 'ユーザーストーリーの概念と良いストーリーの基準INVEST',
