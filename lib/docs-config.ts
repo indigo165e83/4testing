@@ -57,6 +57,11 @@ export const docsNav: Record<string, DocSection[]> = {
               slug: 'use-case-diagram',
               description: 'ユースケーステストで用いるユースケース図の構成要素・書き方・テスト設計への活用',
             },
+            {
+              title: 'クラシフィケーションツリー技法',
+              slug: 'classification-tree',
+              description: '入力パラメータと値をツリー構造で整理し、テストケースを網羅的に設計する技法',
+            },
           ],
         },
         {
