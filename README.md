@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 4Testing — Engineers' Toolbox
 
-## Getting Started
+テスト業務を加速させる、データ生成・テスト設計補助ツール集。
 
-First, run the development server:
+🌐 **https://4testing.indigo165e83.com**
+
+---
+
+## 機能
+
+### データ生成ツール
+| ツール | 説明 |
+|--------|------|
+| Timestamp 変換 | Unix Timestamp と日時（JST/UTC）を相互変換 |
+| ダミーユーザー作成 | 氏名・住所・電話番号などのプロフィールをランダム生成 |
+| UUID/CUID 生成 | テストデータ用の UUID(v4) / CUID を一括生成 |
+
+### テスト管理・設計
+| ツール | 説明 |
+|--------|------|
+| オールペア生成 | ペアワイズ法（ISTQB AL TA v3.1.1 準拠）で最小テストケースを自動生成 |
+| カテゴリ一覧 | 登録済みテスト因子と水準を参照（閲覧のみ） |
+
+### ドキュメント
+JSTQB シラバスに基づくテスト用語・概念の解説記事集。
+
+---
+
+## 技術スタック
+
+| カテゴリ | 技術 |
+|---------|------|
+| フレームワーク | Next.js 16 (App Router) |
+| 言語 | TypeScript |
+| スタイリング | Tailwind CSS v4 |
+| 認証 | Auth.js v5 (Google OAuth) |
+| データベース | PostgreSQL (Neon) / Prisma |
+| 国際化 | next-intl（日本語 / English） |
+| E2Eテスト | Playwright |
+| CI/CD | GitHub Actions |
+| デプロイ | Vercel |
+
+---
+
+## ローカル開発
+
+### 必要な環境
+- Node.js 20+
+- pnpm 9+
+
+### セットアップ
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# リポジトリをクローン
+git clone https://github.com/indigo165e83/4testing.git
+cd 4testing
+
+# パッケージをインストール
+pnpm install
+
+# 環境変数を設定
+cp .env.example .env
+# .env を編集して必要な値を入力
+
+# 開発サーバーを起動
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 をブラウザで開く。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 環境変数
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 変数名 | 説明 |
+|--------|------|
+| `DATABASE_URL` | PostgreSQL 接続文字列 |
+| `AUTH_SECRET` | Auth.js の署名シークレット |
+| `AUTH_GOOGLE_ID` | Google OAuth クライアントID |
+| `AUTH_GOOGLE_SECRET` | Google OAuth クライアントシークレット |
+| `NEXT_PUBLIC_GOOGLE_ADSENSE_ID` | Google AdSense ID |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## テスト
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ローカル（dev環境）
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# dev サーバーを起動しつつテスト実行
+pnpm test:dev
+```
 
-## Deploy on Vercel
+### 本番環境
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# .env.production の BASE_URL が対象になる
+pnpm test:prod
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### CI（GitHub Actions）
+
+`main` ブランチへの push / PR 作成時に自動実行。  
+結果は Actions タブの **Playwright Tests** ワークフローで確認できる。
+
+---
+
+## ディレクトリ構成
+
+```
+├── app/[locale]/          # ページ（App Router）
+│   ├── page.tsx           # ホームページ
+│   ├── docs/              # ドキュメントページ
+│   └── tools/             # 各ツールページ
+├── components/            # 共通コンポーネント
+├── content/docs/          # MDX ドキュメント記事
+├── lib/                   # ユーティリティ（アルゴリズム等）
+├── messages/              # i18n 翻訳ファイル（ja / en）
+├── prisma/                # DB スキーマ
+└── tests/                 # Playwright テスト
+```
