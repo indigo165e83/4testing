@@ -52,6 +52,11 @@ export const docsNav: Record<string, DocSection[]> = {
               slug: 'state-transition-diagram',
               description: '状態遷移テストで用いる状態遷移図の構成要素・書き方・カバレッジ基準',
             },
+            {
+              title: 'ユースケース図',
+              slug: 'use-case-diagram',
+              description: 'ユースケーステストで用いるユースケース図の構成要素・書き方・テスト設計への活用',
+            },
           ],
         },
         {
