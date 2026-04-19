@@ -4,6 +4,7 @@ import { compileMDX } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import type { ReactElement } from 'react'
+import { mdxComponents } from '@/components/docs/MdxComponents'
 
 export async function loadDoc(
   locale: string,
@@ -30,6 +31,7 @@ export async function loadDoc(
 
   const { content } = await compileMDX({
     source,
+    components: mdxComponents,
     options: {
       mdxOptions: {
         remarkPlugins: [remarkGfm],

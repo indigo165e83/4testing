@@ -7,22 +7,21 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return [
-    { locale: 'ja', sectionSlug: 'glossary', slug: 'product-quality-characteristics' },
-    { locale: 'en', sectionSlug: 'glossary', slug: 'product-quality-characteristics' },
-    { locale: 'ja', sectionSlug: 'glossary', slug: 'error-defect-failure' },
-    { locale: 'en', sectionSlug: 'glossary', slug: 'error-defect-failure' },
-    { locale: 'ja', sectionSlug: 'glossary', slug: 'testing-principles' },
-    { locale: 'en', sectionSlug: 'glossary', slug: 'testing-principles' },
-    { locale: 'ja', sectionSlug: 'glossary', slug: '7-main-activities-test-process' },
-    { locale: 'en', sectionSlug: 'glossary', slug: '7-main-activities-test-process' },
-    { locale: 'ja', sectionSlug: 'glossary', slug: 'user-story-and-invest' },
-    { locale: 'en', sectionSlug: 'glossary', slug: 'user-story-and-invest' },
-    { locale: 'ja', sectionSlug: 'glossary', slug: 'test-techniques-v3.1.1' },
-    { locale: 'en', sectionSlug: 'glossary', slug: 'test-techniques-v3.1.1' },
-    { locale: 'ja', sectionSlug: 'links', slug: 'official-sites' },
-    { locale: 'en', sectionSlug: 'links', slug: 'official-sites' },
-  ]
+  const params: { locale: string; sectionSlug: string; slug: string }[] = []
+  const locales = Object.keys(docsNav)
+
+  for (const locale of locales) {
+    for (const section of docsNav[locale]) {
+      for (const item of section.items) {
+        params.push({ locale, sectionSlug: section.slug, slug: item.slug })
+        for (const child of item.children ?? []) {
+          params.push({ locale, sectionSlug: section.slug, slug: child.slug })
+        }
+      }
+    }
+  }
+
+  return params
 }
 
 export default async function DocPage({ params }: PageProps) {
@@ -31,7 +30,9 @@ export default async function DocPage({ params }: PageProps) {
   // sectionSlug と slug の組み合わせが config に存在するか確認
   const sections = docsNav[locale] ?? docsNav['ja']
   const section = sections.find((s) => s.slug === sectionSlug)
-  const docItem = section?.items.find((item) => item.slug === slug)
+  const docItem = section?.items.find(
+    (item) => item.slug === slug || item.children?.some((c) => c.slug === slug)
+  )
 
   if (!docItem) notFound()
 

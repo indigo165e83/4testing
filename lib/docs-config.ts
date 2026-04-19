@@ -2,6 +2,7 @@ export interface DocItem {
   title: string
   slug: string
   description?: string
+  children?: DocItem[]
 }
 
 export interface DocSection {
@@ -45,6 +46,13 @@ export const docsNav: Record<string, DocSection[]> = {
           title: 'テスト技法（JSTQB AL TA v3.1.1）',
           slug: 'test-techniques-v3.1.1',
           description: 'JSTQB AL テストアナリスト シラバスv3.1.1で定義されているテスト技法のまとめ',
+          children: [
+            {
+              title: '状態遷移図',
+              slug: 'state-transition-diagram',
+              description: '状態遷移テストで用いる状態遷移図の構成要素・書き方・カバレッジ基準',
+            },
+          ],
         },
         {
           title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
