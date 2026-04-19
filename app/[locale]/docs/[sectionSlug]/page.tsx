@@ -27,24 +27,45 @@ export default async function SectionIndexPage({ params }: PageProps) {
     <div>
       <h1 className="text-2xl font-bold mb-2">{section.title}</h1>
       <p className="text-gray-400 mb-8 not-prose">
-        {section.items.length}件のドキュメント
+        {section.items.reduce((acc, item) => acc + 1 + (item.children?.length ?? 0), 0)}件のドキュメント
       </p>
 
       <div className="not-prose space-y-2">
         {section.items.map((item) => (
-          <Link
-            key={item.slug}
-            href={`/${locale}/docs/${sectionSlug}/${item.slug}`}
-            className="flex items-start justify-between gap-4 rounded-lg border border-white/10 px-4 py-3 transition-all hover:border-accent/40 hover:bg-white/5"
-          >
-            <div>
-              <div className="text-sm font-medium text-white">{item.title}</div>
-              {item.description && (
-                <div className="mt-0.5 text-xs text-gray-400">{item.description}</div>
-              )}
-            </div>
-            <ChevronRight size={16} className="mt-0.5 shrink-0 text-gray-500" />
-          </Link>
+          <div key={item.slug}>
+            <Link
+              href={`/${locale}/docs/${sectionSlug}/${item.slug}`}
+              className="flex items-start justify-between gap-4 rounded-lg border border-white/10 px-4 py-3 transition-all hover:border-accent/40 hover:bg-white/5"
+            >
+              <div>
+                <div className="text-sm font-medium text-white">{item.title}</div>
+                {item.description && (
+                  <div className="mt-0.5 text-xs text-gray-400">{item.description}</div>
+                )}
+              </div>
+              <ChevronRight size={16} className="mt-0.5 shrink-0 text-gray-500" />
+            </Link>
+
+            {item.children && item.children.length > 0 && (
+              <div className="ml-4 mt-1 space-y-1 border-l border-white/10 pl-3">
+                {item.children.map((child) => (
+                  <Link
+                    key={child.slug}
+                    href={`/${locale}/docs/${sectionSlug}/${child.slug}`}
+                    className="flex items-start justify-between gap-4 rounded-lg border border-white/5 px-4 py-2.5 transition-all hover:border-accent/40 hover:bg-white/5"
+                  >
+                    <div>
+                      <div className="text-sm font-medium text-gray-300">{child.title}</div>
+                      {child.description && (
+                        <div className="mt-0.5 text-xs text-gray-500">{child.description}</div>
+                      )}
+                    </div>
+                    <ChevronRight size={14} className="mt-0.5 shrink-0 text-gray-600" />
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </div>
