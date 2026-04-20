@@ -80,6 +80,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'official-sites',
           description: 'QA関連の公式サイト・参考リソース一覧',
         },
+        {
+          title: 'テストツール',
+          slug: 'test-tools',
+          description: 'Playwright / Selenium / Appium / Robot Framework など主要テストツールの概要と公式リンク（JSTQB AL TA シラバス分類対応）',
+        },
       ],
     },
   ],

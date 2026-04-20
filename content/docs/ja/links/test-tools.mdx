@@ -1,0 +1,257 @@
+# テストツール
+
+JSTQB AL TA シラバスv3.1.1で言及されているテストツールのうち、特に代表的なものをカテゴリ別に紹介します。各ツールの特徴や選定ポイントも併せて解説します。
+
+## ■ Web E2E テスト自動化
+
+### <a href="https://playwright.dev/" target="_blank" rel="noopener noreferrer">Playwright</a>
+
+Microsoft が開発するオープンソースの Web E2E テストフレームワーク。Chromium / Firefox / WebKit の3ブラウザに対応し、1つのAPIで並列テストが可能。TypeScript ネイティブサポート、トレースビューアや自動待機など開発体験が高い。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Microsoft |
+| ライセンス | OSS（無料） |
+| 対応ブラウザ | Chromium / Firefox / WebKit |
+| 言語 | TypeScript / JavaScript / Python / Java / .NET |
+
+---
+
+### <a href="https://www.selenium.dev/" target="_blank" rel="noopener noreferrer">Selenium</a>
+
+Web ブラウザ操作の自動化ツールとして最も歴史が長いOSSフレームワーク。WebDriver プロトコルの標準化に貢献しており、多言語・多ブラウザに対応。大規模なエコシステムを持つ。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Selenium プロジェクト（OSS） |
+| ライセンス | OSS（無料） |
+| 対応ブラウザ | Chrome / Firefox / Safari / Edge など |
+| 言語 | Java / Python / C# / Ruby / JavaScript など |
+
+---
+
+### <a href="https://www.cypress.io/" target="_blank" rel="noopener noreferrer">Cypress</a>
+
+JavaScript/TypeScript 向けのフロントエンドテストフレームワーク。ブラウザ内で直接実行されるアーキテクチャにより、リアルタイムリロードや詳細なデバッグが可能。E2E テストに加え、コンポーネントテストにも対応。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Cypress.io |
+| ライセンス | OSS（無料） / 商用プラン（Cypress Cloud） |
+| 対応ブラウザ | Chrome / Firefox / Edge / Electron |
+| 言語 | TypeScript / JavaScript |
+
+---
+
+### <a href="https://pptr.dev/" target="_blank" rel="noopener noreferrer">Puppeteer</a>
+
+Google が開発する Node.js 向けのブラウザ操作ライブラリ。Chromium/Chrome の DevTools Protocol を使用してヘッドレスブラウザを制御。スクリーンショット取得やPDF生成にも利用される。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Google |
+| ライセンス | OSS（無料） |
+| 対応ブラウザ | Chrome / Chromium / Firefox（実験的） |
+| 言語 | TypeScript / JavaScript |
+
+---
+
+## ■ モバイル E2E テスト自動化
+
+### <a href="https://appium.io/" target="_blank" rel="noopener noreferrer">Appium</a>
+
+iOS / Android / Windows ネイティブアプリのテスト自動化ツール。WebDriver プロトコルをベースとし、実機・エミュレータ両方に対応。Selenium との親和性が高く、コードによるテスト記述が必要。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Appium プロジェクト（OSS） |
+| ライセンス | OSS（無料） |
+| 対応プラットフォーム | iOS / Android / Windows |
+| 言語 | Java / Python / JavaScript / Ruby など |
+
+---
+
+## ■ ノーコード / AI テスト自動化
+
+### <a href="https://autify.com/ja" target="_blank" rel="noopener noreferrer">Autify</a>
+
+AIを活用したノーコードE2Eテスト自動化ツール（日本企業製）。UIの変化を自動検知してテストを更新する「セルフヒーリング」機能が特徴。Selenium / Playwright の専門知識がなくてもテスト作成が可能。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Autify, Inc.（日本） |
+| ライセンス | 商用（有料SaaS） |
+| 対応プラットフォーム | Web / iOS / Android |
+| 特徴 | AIセルフヒーリング、ノーコード、日本語サポート |
+
+---
+
+### <a href="https://magicpod.com/" target="_blank" rel="noopener noreferrer">MagicPod</a>
+
+AIによるスマートな要素認識を活用したノーコードE2Eテスト自動化ツール（日本企業製）。スマホアプリ（iOS/Android）とWebの両方に対応。テストの録画・再生から始められ、CI/CDとの統合もサポート。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | 株式会社Magic Pod（日本） |
+| ライセンス | 商用（有料SaaS） / 無料プランあり |
+| 対応プラットフォーム | Web / iOS / Android |
+| 特徴 | AIによる要素認識、ノーコード、日本語サポート |
+
+---
+
+## ■ テスト設計ツール
+
+JSTQB AL TA シラバスv3.1.1（5.2節）では、テスト条件・テストケース・テストデータの設計を支援するツールが言及されています。
+
+### <a href="https://www.berner-mattner.com/en/solutions/tools/classification-tree-editor/" target="_blank" rel="noopener noreferrer">Classification Tree Editor（CTE）</a>
+
+クラシフィケーションツリー技法に特化した設計支援ツール。分類とクラスをGUI上でツリー構造として定義し、テストケースを自動生成できる。Berner & Mattner 社が開発。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Berner & Mattner |
+| ライセンス | 商用（無料版あり） |
+| 対応技法 | クラシフィケーションツリー技法 |
+
+---
+
+### <a href="https://csrc.nist.gov/projects/automated-combinatorial-testing-for-software" target="_blank" rel="noopener noreferrer">ACTS（Automated Combinatorial Testing for Software）</a>
+
+NIST（米国国立標準技術研究所）が提供するペアワイズ／組み合わせテスト生成ツール。2-way（ペアワイズ）から t-way まで対応し、GUIおよびCLIで利用可能。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | NIST |
+| ライセンス | OSS（無料） |
+| 対応技法 | ペアワイズ（組み合わせテスト） |
+
+---
+
+### <a href="https://github.com/microsoft/pict" target="_blank" rel="noopener noreferrer">PICT（Pairwise Independent Combinatorial Testing）</a>
+
+Microsoft が開発するCLIベースのペアワイズテストケース生成ツール。入力パラメータと値を定義したテキストファイルを渡すだけでテストケースを出力する。軽量でCI/CDとの組み合わせにも適している。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Microsoft |
+| ライセンス | OSS（無料） |
+| 対応技法 | ペアワイズ（組み合わせテスト） |
+| 入力形式 | テキストファイル（.txt） |
+
+---
+
+## ■ テストデータ準備ツール
+
+JSTQB AL TA シラバスv3.1.1（5.3節）では、テスト実行に必要なデータを用意・管理するツールが言及されています。
+
+### <a href="https://fakerjs.dev/" target="_blank" rel="noopener noreferrer">Faker.js</a>
+
+テスト用のダミーデータ（名前・住所・メールアドレス・日付など）を生成する JavaScript/TypeScript ライブラリ。ロケールごとの日本語対応もあり、テストコード内に直接組み込める。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Faker プロジェクト（OSS） |
+| ライセンス | OSS（無料） |
+| 言語 | TypeScript / JavaScript |
+| 特徴 | 多言語対応（日本語ロケールあり）、コード組み込み型 |
+
+---
+
+### <a href="https://www.mockaroo.com/" target="_blank" rel="noopener noreferrer">Mockaroo</a>
+
+ブラウザ上でテスト用データスキーマを定義し、CSV / JSON / SQL などの形式で大量のダミーデータを生成できるオンラインツール。プログラミング不要で利用できる。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Mockaroo LLC |
+| ライセンス | 無料プランあり / 商用プラン |
+| 出力形式 | CSV / JSON / SQL / Excel など |
+| 特徴 | ブラウザ操作のみ、API 経由での生成も可能 |
+
+---
+
+### <a href="https://dbunit.sourceforge.net/" target="_blank" rel="noopener noreferrer">DbUnit</a>
+
+JUnit と連携して使用するデータベース向けテストフレームワーク。テスト前後のDB状態をXMLで定義し、テストごとにデータを初期化・検証できる。データ依存テストの再現性を高める。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | DbUnit プロジェクト（OSS） |
+| ライセンス | OSS（無料） |
+| 言語 | Java |
+| 特徴 | JUnit 連携、DB状態の定義・検証 |
+
+---
+
+## ■ キーワード駆動テストツール
+
+JSTQB AL TA シラバスv3.1.1（5.4節）では、テスト操作をキーワード（アクション）として定義し、プログラミング知識が少ないメンバーでもテストを記述・管理できる手法が説明されています。
+
+### <a href="https://robotframework.org/" target="_blank" rel="noopener noreferrer">Robot Framework</a>
+
+キーワード駆動テストの代表的なOSSフレームワーク。テストを自然言語に近いキーワードで記述でき、Web（Playwright / SeleniumLibrary）・API・DBなど幅広いテストに対応。Python ベース。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Robot Framework Foundation（OSS） |
+| ライセンス | OSS（無料） |
+| 言語 | Python（テスト記述は独自キーワード構文） |
+| 特徴 | 豊富なライブラリ、BDD対応、詳細レポート生成 |
+
+---
+
+### <a href="https://cucumber.io/" target="_blank" rel="noopener noreferrer">Cucumber</a>
+
+BDD（振る舞い駆動開発）ツールとして広く使われるフレームワーク。Gherkin 構文（Given / When / Then）でシナリオを記述し、テストコードと自然言語のシナリオを対応付ける。キーワード駆動テストのアプローチと親和性が高い。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Cucumber Ltd（OSS） |
+| ライセンス | OSS（無料） |
+| 言語 | Java / JavaScript / Ruby / Python など |
+| 特徴 | Gherkin 構文、BDD、ビジネスサイドとの仕様共有 |
+
+---
+
+### <a href="http://fitnesse.org/" target="_blank" rel="noopener noreferrer">FitNesse</a>
+
+Wiki ベースの受け入れテストフレームワーク。テストをWikiページとして記述し、ブラウザ上でテスト実行・結果確認ができる。キーワード駆動テストのコンセプトに基づき、テスターと開発者が協働しやすい。
+
+| 項目 | 内容 |
+|------|------|
+| 開発元 | FitNesse プロジェクト（OSS） |
+| ライセンス | OSS（無料） |
+| 言語 | Java |
+| 特徴 | Wikiベース、受け入れテスト、テーブル形式でのテスト定義 |
+
+---
+
+## ■ ツール比較
+
+### テスト実行ツール
+
+| ツール | 種別 | 対象 | コード | 費用 |
+|--------|------|------|--------|------|
+| Playwright | E2E テストフレームワーク | Web | 必要 | 無料 |
+| Selenium | E2E テストフレームワーク | Web | 必要 | 無料 |
+| Cypress | E2E テストフレームワーク | Web | 必要 | 無料 / 有料 |
+| Puppeteer | ブラウザ操作ライブラリ | Web（Chrome系） | 必要 | 無料 |
+| Appium | モバイルテストフレームワーク | iOS / Android | 必要 | 無料 |
+| Autify | ノーコードテストツール | Web / モバイル | 不要 | 有料 |
+| MagicPod | ノーコードテストツール | Web / モバイル | 不要 | 有料 |
+
+### テスト設計・データ・キーワード駆動ツール（JSTQB AL TA シラバス分類）
+
+| ツール | カテゴリ | 費用 |
+|--------|----------|------|
+| CTE | テスト設計（クラシフィケーションツリー） | 無料版あり |
+| ACTS | テスト設計（ペアワイズ） | 無料 |
+| PICT | テスト設計（ペアワイズ） | 無料 |
+| Faker.js | テストデータ準備 | 無料 |
+| Mockaroo | テストデータ準備 | 無料 / 有料 |
+| DbUnit | テストデータ準備（DB） | 無料 |
+| Robot Framework | キーワード駆動テスト | 無料 |
+| Cucumber | キーワード駆動テスト（BDD） | 無料 |
+| FitNesse | キーワード駆動テスト（受け入れ） | 無料 |
+
+> **選定ポイント**：Web E2Eは Playwright が現在の標準。モバイルネイティブは Appium。ペアワイズ生成は PICT（CLI軽量）か ACTS（GUI充実）。キーワード駆動は Robot Framework が最も広く使われています。
