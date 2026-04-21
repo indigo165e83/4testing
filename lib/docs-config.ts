@@ -68,6 +68,13 @@ export const docsNav: Record<string, DocSection[]> = {
           title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
           slug: 'product-quality-characteristics',
           description: 'ISO/IEC 25010（2023年版）が定義するプロダクト品質特性と副特性の一覧',
+          children: [
+            {
+              title: '使用性評価',
+              slug: 'usability-testing',
+              description: '使用性テスト・ユーザーエクスペリエンス・アクセシビリティの評価手法（JSTQB AL TA 4.2.5節）',
+            },
+          ],
         },
       ],
     },
