@@ -53,6 +53,11 @@ export const docsNav: Record<string, DocSection[]> = {
           description: 'JSTQB AL テストアナリスト シラバスv3.1.1で定義されているテスト技法のまとめ',
           children: [
             {
+              title: 'デシジョンテーブルテスト',
+              slug: 'decision-table',
+              description: 'デシジョンテーブルの構成・制限指定/拡張指定・簡単化・カバレッジ基準（JSTQB AL TA 3.2.3節）',
+            },
+            {
               title: '状態遷移図',
               slug: 'state-transition-diagram',
               description: '状態遷移テストで用いる状態遷移図の構成要素・書き方・カバレッジ基準',
