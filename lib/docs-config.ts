@@ -43,6 +43,11 @@ export const docsNav: Record<string, DocSection[]> = {
           description: 'ユーザーストーリーの概念と良いストーリーの基準INVEST',
         },
         {
+          title: 'レビュー',
+          slug: 'review',
+          description: 'レビュープロセス・役割・種別・成功要因と、チェックリストベースドレビューの活用（ISTQB FL 3.2 / JSTQB AL TA 第5章）',
+        },
+        {
           title: 'テスト技法（JSTQB AL TA v3.1.1）',
           slug: 'test-techniques-v3.1.1',
           description: 'JSTQB AL テストアナリスト シラバスv3.1.1で定義されているテスト技法のまとめ',
