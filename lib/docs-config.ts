@@ -97,6 +97,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'keyword-driven-testing-queue',
           description: 'キューシステムを題材にしたキーワード駆動テストの例題と解説（JSTQB AL TA）',
         },
+        {
+          title: 'リスクベーステスト：影響分析とテストケースの優先順位付け',
+          slug: 'risk-based-testing-impact-analysis',
+          description: 'トレーサビリティマトリクスを用いた影響分析とリスクベース優先順位付けの例題と解説（JSTQB AL TA）',
+        },
       ],
     },
     {
