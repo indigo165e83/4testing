@@ -147,6 +147,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'activity-diagram-order-processing-test-cases',
           description: 'フォーク・ジョイン（並行フロー）と決定ノードを含むアクティビティ図からシナリオ数を導出する例題（JSTQB AL TA）',
         },
+        {
+          title: 'デシジョンテーブルテスト：ATM支払いシステムの最小化',
+          slug: 'decision-table-atm-payment-minimization',
+          description: 'ドントケアエントリを段階的に適用してデシジョンテーブルの列数を最小化する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
