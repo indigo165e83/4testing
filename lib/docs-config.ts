@@ -107,6 +107,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'regression-testing-strategy-mobile-banking',
           description: '履歴ベースリグレッションテスト戦略の選択と、リスクベース・使用頻度ベースとの違いを解説する例題（JSTQB AL TA）',
         },
+        {
+          title: 'ドメインテスト：コード複雑度評価システムの境界分析',
+          slug: 'domain-testing-cyclomatic-complexity',
+          description: '簡略化ドメインカバレッジにおけるON点・OFF点の配置方法を解説する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
