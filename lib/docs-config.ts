@@ -117,6 +117,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'domain-testing-espresso-controller',
           description: '測定精度を考慮した信頼性ドメインカバレッジのOFF点計算と欠如テスト点の特定を解説する例題（JSTQB AL TA）',
         },
+        {
+          title: '組み合わせテスト：ベースチョイスカバレッジ基準の適用',
+          slug: 'base-choice-coverage-environment-testing',
+          description: 'ベースチョイス法による1パラメータずつの変化と必要なテストケースの導出を解説する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
