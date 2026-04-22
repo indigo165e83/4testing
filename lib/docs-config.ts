@@ -132,6 +132,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'state-transition-circuit-breaker-round-trip',
           description: '状態遷移図からラウンドトリップを列挙し、テストシーケンスのカバレッジを計算する例題（JSTQB AL TA）',
         },
+        {
+          title: '状態遷移テスト：保険金請求ライフサイクルの1-スイッチカバレッジ',
+          slug: 'state-transition-1switch-insurance-claim',
+          description: '各遷移の終点の出次数から1-スイッチ総数を求めるN-スイッチカバレッジの例題（JSTQB AL TA）',
+        },
       ],
     },
     {

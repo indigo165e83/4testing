@@ -1,0 +1,180 @@
+# 状態遷移テスト：保険金請求ライフサイクルの1-スイッチカバレッジ
+
+## 問題
+
+保険会社の請求ライフサイクルを管理するシステムコンポーネントの状態ベーステストを設計します。以下の仕様が与えられています。
+
+変数 x は請求のクローズ方法を保持し、`acc`（Accepted からクローズ）または `act`（Activated からクローズ）の値を取ります。
+
+### 遷移一覧
+
+![状態遷移図の画像](/docs/glossary/state-transition-1switch-insurance-claim.webp)
+
+| ID | 遷移 | トリガー / アクション |
+|:---:|------|-------------------|
+| T1 | Applied → Accepted | accept |
+| T2 | Accepted → Activated | activate |
+| T3 | Activated → Accepted | goBack |
+| T4 | Activated → Closed | close / x := act |
+| T5 | Accepted → Closed | close / x := acc |
+| T6 | Closed → Accepted | goBack \[x == acc\] |
+| T7 | Closed → Activated | goBack \[x == act\] |
+| T8 | Closed → Archived | archive |
+
+> T4 は Activated からクローズする際に x を `act` にセットし、T5 は Accepted からクローズする際に x を `acc` にセットします。T6/T7 はその x の値に基づいてどちらに戻るかをガード条件で決定します。
+
+100% **1-スイッチカバレッジ** を達成するために実行すべき1-スイッチは何通りか？
+
+- a) 16
+- b) 14
+- c) 8
+- d) 15
+
+---
+
+## 解説
+
+### 1-スイッチ（N-スイッチ）とは
+
+**N-スイッチカバレッジ**は状態遷移テストのカバレッジ基準で、連続する N+1 本の遷移の列をすべてテストすることを求めます。
+
+| N | 別名 | 対象 |
+|:---:|------|------|
+| 0 | 遷移カバレッジ | すべての遷移を1回実行 |
+| 1 | **1-スイッチカバレッジ** | **連続する2本の遷移の組み合わせをすべて実行** |
+| 2 | 2-スイッチカバレッジ | 連続する3本の遷移の組み合わせをすべて実行 |
+
+**1-スイッチ** = 遷移 Tᵢ の直後に遷移 Tⱼ が続くペア（Tᵢ → Tⱼ）。ある遷移の終点ステートから出発できる遷移との組み合わせが1-スイッチになります。
+
+### 全1-スイッチの列挙
+
+各遷移の終点ステートから続けられる遷移を求めます。
+
+**Archived は終端ステート**（Archived からの遷移なし）なので、T8 の後に続く遷移はありません。
+
+#### T1（Applied → **Accepted**）
+
+Accepted を起点にできる遷移：T2、T5
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T1 → T2 | Applied→Accepted→Activated |
+| T1 → T5 | Applied→Accepted→Closed |
+
+小計：**2**
+
+#### T2（Accepted → **Activated**）
+
+Activated を起点にできる遷移：T3、T4
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T2 → T3 | Accepted→Activated→Accepted |
+| T2 → T4 | Accepted→Activated→Closed |
+
+小計：**2**
+
+#### T3（Activated → **Accepted**）
+
+Accepted を起点にできる遷移：T2、T5
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T3 → T2 | Activated→Accepted→Activated |
+| T3 → T5 | Activated→Accepted→Closed |
+
+小計：**2**
+
+#### T4（Activated → **Closed**）
+
+Closed を起点にできる遷移：T6、T7、T8
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T4 → T6 | Activated→Closed→Accepted |
+| T4 → T7 | Activated→Closed→Activated |
+| T4 → T8 | Activated→Closed→Archived |
+
+小計：**3**
+
+#### T5（Accepted → **Closed**）
+
+Closed を起点にできる遷移：T6、T7、T8
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T5 → T6 | Accepted→Closed→Accepted |
+| T5 → T7 | Accepted→Closed→Activated |
+| T5 → T8 | Accepted→Closed→Archived |
+
+小計：**3**
+
+#### T6（Closed → **Accepted**）
+
+Accepted を起点にできる遷移：T2、T5
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T6 → T2 | Closed→Accepted→Activated |
+| T6 → T5 | Closed→Accepted→Closed |
+
+小計：**2**
+
+#### T7（Closed → **Activated**）
+
+Activated を起点にできる遷移：T3、T4
+
+| 1-スイッチ | 経路 |
+|-----------|------|
+| T7 → T3 | Closed→Activated→Accepted |
+| T7 → T4 | Closed→Activated→Closed |
+
+小計：**2**
+
+#### T8（Closed → **Archived**）
+
+Archived は終端ステート → 続く遷移なし
+
+小計：**0**
+
+### 合計
+
+| 遷移 | 後続遷移の数 | 小計 |
+|:---:|:---:|:---:|
+| T1 | 2（T2、T5） | 2 |
+| T2 | 2（T3、T4） | 2 |
+| T3 | 2（T2、T5） | 2 |
+| T4 | 3（T6、T7、T8） | 3 |
+| T5 | 3（T6、T7、T8） | 3 |
+| T6 | 2（T2、T5） | 2 |
+| T7 | 2（T3、T4） | 2 |
+| T8 | 0（終端） | 0 |
+| **合計** | | **16** |
+
+---
+
+## 正解
+
+**a) 16**
+
+---
+
+## ポイント
+
+### 1-スイッチ数の計算法
+
+各遷移の **終点ステートの出次数（out-degree）** が、その遷移が持つ1-スイッチの数に等しくなります。
+
+```
+1-スイッチ総数 = Σ（各遷移の終点ステートの出次数）
+             = 2 + 2 + 2 + 3 + 3 + 2 + 2 + 0
+             = 16
+```
+
+### 終端ステートに着目する
+
+Archived のような終端ステートからの遷移は存在しないため、T8 の1-スイッチは 0 です。終端ステートへの遷移は1-スイッチカバレッジを「打ち切る」点を見落とさないようにします。
+
+### ガード条件と変数 x の役割
+
+T6（goBack [x == acc]）と T7（goBack [x == act]）はどちらも Closed から出発しますが、ガード条件によって遷移先が異なります。1-スイッチカバレッジでは、T4→T6、T4→T7、T5→T6、T5→T7 のように、変数 x の値を制御したテストケースを設計して両方のガード分岐をカバーする必要があります。
