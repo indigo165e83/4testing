@@ -89,7 +89,7 @@ export const docsNav: Record<string, DocSection[]> = {
       ],
     },
     {
-      title: '例題・演習',
+      title: '例題・演習（AL TA v4.0）',
       slug: 'examples',
       items: [
         {
