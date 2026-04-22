@@ -142,6 +142,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'use-case-testing-food-order-minimum-test-cases',
           description: '代替・例外シナリオの排他制約を考慮してユースケーステストの最小テストケース数を導出する例題（JSTQB AL TA）',
         },
+        {
+          title: 'アクティビティ図テスト：注文処理フローの最小テストケース数',
+          slug: 'activity-diagram-order-processing-test-cases',
+          description: 'フォーク・ジョイン（並行フロー）と決定ノードを含むアクティビティ図からシナリオ数を導出する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
