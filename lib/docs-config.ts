@@ -112,6 +112,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'domain-testing-cyclomatic-complexity',
           description: '簡略化ドメインカバレッジにおけるON点・OFF点の配置方法を解説する例題（JSTQB AL TA）',
         },
+        {
+          title: 'ドメインテスト：エスプレッソ制御システムの信頼性ドメインカバレッジ',
+          slug: 'domain-testing-espresso-controller',
+          description: '測定精度を考慮した信頼性ドメインカバレッジのOFF点計算と欠如テスト点の特定を解説する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
