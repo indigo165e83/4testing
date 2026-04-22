@@ -137,6 +137,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'state-transition-1switch-insurance-claim',
           description: '各遷移の終点の出次数から1-スイッチ総数を求めるN-スイッチカバレッジの例題（JSTQB AL TA）',
         },
+        {
+          title: 'ユースケーステスト：フードオーダーシナリオの最小テストケース数',
+          slug: 'use-case-testing-food-order-minimum-test-cases',
+          description: '代替・例外シナリオの排他制約を考慮してユースケーステストの最小テストケース数を導出する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
