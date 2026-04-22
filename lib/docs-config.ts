@@ -102,6 +102,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'risk-based-testing-impact-analysis',
           description: 'トレーサビリティマトリクスを用いた影響分析とリスクベース優先順位付けの例題と解説（JSTQB AL TA）',
         },
+        {
+          title: 'リグレッションテスト戦略：モバイルバンキングアプリの履歴ベース回帰テスト',
+          slug: 'regression-testing-strategy-mobile-banking',
+          description: '履歴ベースリグレッションテスト戦略の選択と、リスクベース・使用頻度ベースとの違いを解説する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
