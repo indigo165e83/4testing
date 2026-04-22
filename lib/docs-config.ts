@@ -122,6 +122,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'base-choice-coverage-environment-testing',
           description: 'ベースチョイス法による1パラメータずつの変化と必要なテストケースの導出を解説する例題（JSTQB AL TA）',
         },
+        {
+          title: 'ペアワイズテスト：住宅保険ポリシーの必要テストケース数',
+          slug: 'pairwise-testing-insurance-policy',
+          description: '最大パラメータペアの積から100%ペアワイズカバレッジの最小テストケース数を求める例題（JSTQB AL TA）',
+        },
       ],
     },
     {
