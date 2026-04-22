@@ -152,6 +152,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'decision-table-atm-payment-minimization',
           description: 'ドントケアエントリを段階的に適用してデシジョンテーブルの列数を最小化する例題（JSTQB AL TA）',
         },
+        {
+          title: 'デシジョンテーブルテスト：ルールのチェックサムと整合性の判定',
+          slug: 'decision-table-rule-checksum-consistency',
+          description: 'ドントケアを含むルールのチェックサム計算と他ルールとの整合性を判定する例題（JSTQB AL TA）',
+        },
       ],
     },
     {
