@@ -89,6 +89,17 @@ export const docsNav: Record<string, DocSection[]> = {
       ],
     },
     {
+      title: '例題・演習',
+      slug: 'examples',
+      items: [
+        {
+          title: 'キーワード駆動テスト：キューシステムの受け入れ基準検証',
+          slug: 'keyword-driven-testing-queue',
+          description: 'キューシステムを題材にしたキーワード駆動テストの例題と解説（JSTQB AL TA）',
+        },
+      ],
+    },
+    {
       title: 'リンク集',
       slug: 'links',
       items: [

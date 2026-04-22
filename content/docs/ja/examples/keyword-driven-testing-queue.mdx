@@ -1,0 +1,133 @@
+# キーワード駆動テスト：キューシステムの受け入れ基準検証
+
+## 問題
+
+キューシステムをキーワード駆動テストでテストする。以下のキーワードが使用可能です。
+
+| キーワード | 説明 |
+|-----------|------|
+| `Start()` | 空のキューを作成する |
+| `Enqueue(e)` | 要素 e をキューの末尾に追加する |
+| `Dequeue()` | キューの先頭から要素を取り出す（削除する） |
+| `CreateQueue(e1, e2, ..., en)` | `Enqueue(e1), Enqueue(e2), ..., Enqueue(en)` と同等の複合キーワード |
+| `AssertFirstElement(e)` | キューの先頭に要素 e があるか確認する。なければエラーを返す |
+| `AssertEmpty()` | キューが空であるか確認する。空でなければエラーを返す |
+
+以下のテストスクリプトが設計されています。
+
+```
+i)   Start(); Enqueue(A); Enqueue(B); Dequeue(); AssertFirstElement(A)
+ii)  Start(); Enqueue(A); Enqueue(B); Dequeue(); AssertNonempty()
+iii) Start(); Enqueue(A); Dequeue(); Enqueue(B); AssertFirstElement(B)
+iv)  Start(); CreateQueue(A, B); Dequeue(); Dequeue(); AssertEmpty()
+v)   Start(); CreateQueue(A, B); Dequeue(); AssertFirstElement(B)
+```
+
+次の受け入れ基準を検証するテストスクリプトはどれか。
+
+> 「キューに追加された要素の数が取り出された要素の数より多い場合、キューは空ではない」
+
+- a) i)、ii)、iii)
+- b) ii)、iv)、v)
+- c) iii)、v)
+- d) ii)、iv)
+
+---
+
+## 解説
+
+### キューの動作原則
+
+キューは **FIFO（First In, First Out）** 構造です。`Enqueue` で末尾に追加し、`Dequeue` で先頭から取り出します。
+
+### 受け入れ基準の読み解き方
+
+受け入れ基準：**「追加数 ＞ 取り出し数」のとき、キューは空ではない**
+
+この基準を検証するには、以下の2点をスクリプトが満たす必要があります。
+
+1. 取り出し数よりも追加数が多い状態を作る
+2. キューが空でないこと（要素が存在すること）を確認する
+
+### 各スクリプトの分析
+
+#### i) Start(); Enqueue(A); Enqueue(B); Dequeue(); AssertFirstElement(A)
+
+| 手順 | キューの状態 |
+|------|------------|
+| `Start()` | `[]` |
+| `Enqueue(A)` | `[A]` |
+| `Enqueue(B)` | `[A, B]` |
+| `Dequeue()` | `[B]`（先頭の A が取り出される） |
+| `AssertFirstElement(A)` | **エラー**（先頭は B であり A ではない） |
+
+追加数(2) ＞ 取り出し数(1) の条件は満たすが、`AssertFirstElement(A)` はエラーになるためスクリプトが失敗する。受け入れ基準の検証に**なっていない** ✗
+
+#### ii) Start(); Enqueue(A); Enqueue(B); Dequeue(); AssertNonempty()
+
+`AssertNonempty()` は**使用可能なキーワードの一覧に存在しない**。仕様外のキーワードを含むスクリプトは実行できないため、このスクリプトは**無効** ✗
+
+#### iii) Start(); Enqueue(A); Dequeue(); Enqueue(B); AssertFirstElement(B)
+
+| 手順 | キューの状態 |
+|------|------------|
+| `Start()` | `[]` |
+| `Enqueue(A)` | `[A]` |
+| `Dequeue()` | `[]`（A が取り出される） |
+| `Enqueue(B)` | `[B]` |
+| `AssertFirstElement(B)` | **成功**（先頭は B） |
+
+追加数(2: A, B) ＞ 取り出し数(1: A) ✓ → キューに B が存在する → 受け入れ基準を**検証している** ✓
+
+#### iv) Start(); CreateQueue(A, B); Dequeue(); Dequeue(); AssertEmpty()
+
+| 手順 | キューの状態 |
+|------|------------|
+| `Start()` | `[]` |
+| `CreateQueue(A, B)` | `[A, B]`（= `Enqueue(A); Enqueue(B)`） |
+| `Dequeue()` | `[B]` |
+| `Dequeue()` | `[]` |
+| `AssertEmpty()` | **成功**（キューは空） |
+
+追加数(2) ＝ 取り出し数(2) → 受け入れ基準の前提「追加数 ＞ 取り出し数」を満たさない。空になったキューを確認しているだけで、受け入れ基準を**検証していない** ✗
+
+#### v) Start(); CreateQueue(A, B); Dequeue(); AssertFirstElement(B)
+
+| 手順 | キューの状態 |
+|------|------------|
+| `Start()` | `[]` |
+| `CreateQueue(A, B)` | `[A, B]`（= `Enqueue(A); Enqueue(B)`） |
+| `Dequeue()` | `[B]`（先頭の A が取り出される） |
+| `AssertFirstElement(B)` | **成功**（先頭は B） |
+
+追加数(2) ＞ 取り出し数(1) ✓ → キューに B が存在する → 受け入れ基準を**検証している** ✓
+
+---
+
+## 正解
+
+**c) iii) と v)**
+
+| スクリプト | 追加数 ＞ 取り出し数 | キュー非空の確認 | 受け入れ基準の検証 |
+|-----------|:---:|------|:---:|
+| i) | ✓ | `AssertFirstElement(A)` → エラー（誤ったアサーション） | ✗ |
+| ii) | ✓ | `AssertNonempty()` → 使用不可（存在しないキーワード） | ✗ |
+| iii) | ✓ | `AssertFirstElement(B)` → 成功 | ✓ |
+| iv) | ✗（追加数 = 取り出し数） | `AssertEmpty()` → 成功（空を確認） | ✗ |
+| v) | ✓ | `AssertFirstElement(B)` → 成功 | ✓ |
+
+---
+
+## ポイント
+
+### 使用可能なキーワードを正確に把握する
+
+スクリプト ii) は `AssertNonempty()` という、定義されていないキーワードを使用しています。キーワード駆動テストでは、**キーワードの仕様（名前・引数・動作）を正確に把握**し、定義外のキーワードを使わないことが重要です。
+
+### 受け入れ基準の前提条件を再現する
+
+スクリプト iv) は最終的にキューが空になるシナリオを実行しており、受け入れ基準が想定する「追加数 ＞ 取り出し数」の状態を作れていません。受け入れ基準を検証するには、**基準の前提条件を正確にシナリオとして再現**した上でアサーションを実行する必要があります。
+
+### アサーションの正確さ
+
+スクリプト i) はキューに要素が残っている状態で終わりますが、アサーション対象が「取り出し済みの要素 A」になっています。**アサーションが実際のキューの状態と一致しているか**を確認することが重要です。
