@@ -127,6 +127,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'pairwise-testing-insurance-policy',
           description: '最大パラメータペアの積から100%ペアワイズカバレッジの最小テストケース数を求める例題（JSTQB AL TA）',
         },
+        {
+          title: '状態遷移テスト：サーキットブレーカーのラウンドトリップカバレッジ',
+          slug: 'state-transition-circuit-breaker-round-trip',
+          description: '状態遷移図からラウンドトリップを列挙し、テストシーケンスのカバレッジを計算する例題（JSTQB AL TA）',
+        },
       ],
     },
     {

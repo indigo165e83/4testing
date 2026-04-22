@@ -1,0 +1,118 @@
+# 状態遷移テスト：サーキットブレーカーのラウンドトリップカバレッジ
+
+## 問題
+
+サーキットブレーカーパターンを実装したシステムをテストします。システムは以下の状態遷移図でモデル化されています。
+
+![状態遷移図の画像](/docs/glossary/state-transition-circuit-breaker-round-trip.webp)
+
+| 遷移 | トリガー |
+|------|---------|
+| Closed → Closed | ok（自己ループ） |
+| Closed → Open | fail |
+| Open → End（終端） | fail |
+| Open → HalfOpen | timeout |
+| HalfOpen → Closed | ok |
+| HalfOpen → Open | fail |
+
+すべての潜在的なラウンドトリップは実行可能です。以下の状態シーケンスを実行するテストケースを設計済みです。
+
+```
+Closed → Open → HalfOpen → Closed → Open → HalfOpen → Open → End
+```
+
+このテストケースで達成されるラウンドトリップカバレッジは何％か？
+
+- a) 100%
+- b) 50%
+- c) 60%
+- d) 80%
+
+---
+
+## 解説
+
+### ラウンドトリップとは
+
+**ラウンドトリップ（Round Trip）** とは、あるステートから出発し、同じステートに戻る経路です。ここでは、自己ループのような自明な経路（同じステートに1ステップで戻る）を除いた、**2つ以上の異なるステートを経由するラウンドトリップ**を対象とします。
+
+### 全ラウンドトリップの列挙
+
+End は終端ステート（遷移元になれない）なので、ラウンドトリップの対象外です。
+Closed、Open、HalfOpen の3ステートを対象に、ステートを重複せず出発点に戻る経路をすべて列挙します。
+
+| # | ラウンドトリップ | 使用する遷移 |
+|:---:|----------------|------------|
+| RT1 | **Closed → Open → HalfOpen → Closed** | Closed→Open(fail)、Open→HalfOpen(timeout)、HalfOpen→Closed(ok) |
+| RT2 | **Open → HalfOpen → Open** | Open→HalfOpen(timeout)、HalfOpen→Open(fail) |
+| RT3 | **Open → HalfOpen → Closed → Open** | Open→HalfOpen(timeout)、HalfOpen→Closed(ok)、Closed→Open(fail) |
+| RT4 | **HalfOpen → Open → HalfOpen** | HalfOpen→Open(fail)、Open→HalfOpen(timeout) |
+| RT5 | **HalfOpen → Closed → Open → HalfOpen** | HalfOpen→Closed(ok)、Closed→Open(fail)、Open→HalfOpen(timeout) |
+
+**合計：5本のラウンドトリップ**
+
+### テストシーケンスによるカバレッジ確認
+
+テストシーケンス（位置番号付き）：
+
+```
+Closed(1) → Open(2) → HalfOpen(3) → Closed(4) → Open(5) → HalfOpen(6) → Open(7) → End
+```
+
+各ラウンドトリップが実行済みかを確認します。同一ステートが2回現れる区間を抽出し、その間が単純経路（ステートの重複なし）であればラウンドトリップとみなします。
+
+| ステート | 出現位置 | 経路 | 対応RT | 結果 |
+|---------|:-------:|------|:---:|:---:|
+| Closed | 1 → 4 | Closed→Open→HalfOpen→Closed | RT1 | ✓ |
+| Open | 2 → 5 | Open→HalfOpen→Closed→Open | RT3 | ✓ |
+| HalfOpen | 3 → 6 | HalfOpen→Closed→Open→HalfOpen | RT5 | ✓ |
+| Open | 5 → 7 | Open→HalfOpen→Open | RT2 | ✓ |
+
+> 位置6（HalfOpen）→ 位置7（Open）→ End と続くため、Open は HalfOpen に戻らず終端 End に至ります。
+
+**RT4（HalfOpen → Open → HalfOpen）が未カバー。**
+
+位置6の HalfOpen から Open（位置7）に遷移した後、テストシーケンスが End で終了しているため、Open から HalfOpen に戻る経路（RT4）が実行されていません。
+
+### カバレッジ計算
+
+| ラウンドトリップ | カバー状況 |
+|----------------|:---:|
+| RT1: Closed → Open → HalfOpen → Closed | ✓ |
+| RT2: Open → HalfOpen → Open | ✓ |
+| RT3: Open → HalfOpen → Closed → Open | ✓ |
+| **RT4: HalfOpen → Open → HalfOpen** | **✗** |
+| RT5: HalfOpen → Closed → Open → HalfOpen | ✓ |
+
+```
+カバレッジ = 4 / 5 = 80%
+```
+
+---
+
+## 正解
+
+**d) 80%**
+
+---
+
+## ポイント
+
+### ラウンドトリップの数え方
+
+ラウンドトリップは出発ステートごとに数えます。同じ遷移を使うサイクルでも、出発点が異なれば別のラウンドトリップです。
+
+- RT1（Closed起点）と RT3（Open起点）と RT5（HalfOpen起点）は、同じ3遷移（Closed→Open、Open→HalfOpen、HalfOpen→Closed）のサイクルを異なるステートから開始した3つの別々のラウンドトリップです。
+- 同様に、RT2（Open起点）と RT4（HalfOpen起点）も同じ2遷移のサイクルを異なるステートから開始した2つの別々のラウンドトリップです。
+
+### なぜ RT4 だけ未カバーになるのか
+
+このテストシーケンスは Open → End で終わるよう設計されているため、最後の Open から HalfOpen への遷移（timeout）が発生しません。RT4 を追加でカバーするには、シーケンスの末尾を Open → End で終わらせる前に、HalfOpen → Open → HalfOpen という経路を別途組み込む必要があります。
+
+### 100% ラウンドトリップカバレッジを達成するには
+
+RT4（HalfOpen → Open → HalfOpen）をカバーするテストケースを追加する、または既存のシーケンスを延長する必要があります。例えば：
+
+```
+HalfOpen → Open → HalfOpen → Closed → End（または他の終端経路）
+```
