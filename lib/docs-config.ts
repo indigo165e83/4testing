@@ -112,6 +112,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'decision-table-mobile-download-functionality',
           description: '接続強度とデータ容量の境界条件を含む、モバイルアプリのダウンロード機能に関するデシジョンテーブルの例題（JSTQB AL TA v3.1）',
         },        
+        {
+          title: '状態遷移テスト：OSスケジューラ（1スイッチカバレッジ）',
+          slug: 'state-transition-os-scheduler',
+          description: 'OSスケジューラの状態遷移モデルを題材に、1スイッチカバレッジを達成する最小テストケース数の導出を解説する例題（JSTQB AL TA v3.1）',
+        },
       ],
     },
     {
