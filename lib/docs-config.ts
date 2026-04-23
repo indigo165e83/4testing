@@ -122,6 +122,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'state-transition-ready-round-trip',
           description: '特定の状態（READY）を起点・終点とするラウンドトリップ（ループ）を特定し、最小テストケース数を導出する例題（JSTQB AL TA v3.1）',
         },        
+        {
+          title: 'ユースケーステスト：最少テストケース数（Easytravel）',
+          slug: 'use-case-testing-easytravel-minimum-test-cases',
+          description: 'ユースケースの基本フローと例外フローから、最小カバレッジを達成するために必要なテストケース数を導出する例題（JSTQB AL TA v3.1）',
+        },        
       ],
     },
     {
