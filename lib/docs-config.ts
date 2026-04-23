@@ -107,6 +107,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'decision-table-payment-options-review',
           description: 'インターネットストアの支払いオプションに関するデシジョンテーブルをレビューし、論理的な不備や不一致を特定する例題です。（JSTQB AL TA v3.1）',
         },        
+        {
+          title: 'デシジョンテーブル：モバイルアプリのダウンロード機能',
+          slug: 'decision-table-mobile-download-functionality',
+          description: '接続強度とデータ容量の境界条件を含む、モバイルアプリのダウンロード機能に関するデシジョンテーブルの例題（JSTQB AL TA v3.1）',
+        },        
       ],
     },
     {
