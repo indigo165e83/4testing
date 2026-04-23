@@ -117,6 +117,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'state-transition-os-scheduler',
           description: 'OSスケジューラの状態遷移モデルを題材に、1スイッチカバレッジを達成する最小テストケース数の導出を解説する例題（JSTQB AL TA v3.1）',
         },
+        {
+          title: '状態遷移テスト：READY状態のラウンドトリップ',
+          slug: 'state-transition-ready-round-trip',
+          description: '特定の状態（READY）を起点・終点とするラウンドトリップ（ループ）を特定し、最小テストケース数を導出する例題（JSTQB AL TA v3.1）',
+        },        
       ],
     },
     {
