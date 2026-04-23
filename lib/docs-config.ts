@@ -97,10 +97,15 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'ep-employee-wellness-program',
           description: '条件付きパラメータを含む仕様に同値分割を適用し、有効パーティションを100%カバーする最小テストケース数を導出する例題（JSTQB AL TA v3.1）',
         },
-      {
+        {
           title: '境界値分析：境界値カバレッジの算出',
           slug: 'bva-loyalty-points-coverage',
           description: '顧客ロイヤリティポイントの境界値分析を題材に、2値境界値を用いたカバレッジ（網羅率）の計算方法を解説する例題（JSTQB AL TA v3.1）',
+        },        
+        {
+          title: 'デシジョンテーブル：支払いオプションのレビュー',
+          slug: 'decision-table-payment-options-review',
+          description: 'インターネットストアの支払いオプションに関するデシジョンテーブルをレビューし、論理的な不備や不一致を特定する例題です。（JSTQB AL TA v3.1）',
         },        
       ],
     },
