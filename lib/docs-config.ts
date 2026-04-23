@@ -127,6 +127,11 @@ export const docsNav: Record<string, DocSection[]> = {
           slug: 'use-case-testing-easytravel-minimum-test-cases',
           description: 'ユースケースの基本フローと例外フローから、最小カバレッジを達成するために必要なテストケース数を導出する例題（JSTQB AL TA v3.1）',
         },        
+        {
+          title: 'ユースケーステスト：最少テストケース数（スキルポータル）',
+          slug: 'use-case-testing-skills-portal-minimum-test-cases',
+          description: 'ユースケースの基本フロー、代替フロー、例外フローから、最小カバレッジを達成するために必要なテストケース数を導出する例題（JSTQB AL TA v3.1）',
+        },
       ],
     },
     {
