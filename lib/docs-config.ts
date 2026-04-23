@@ -89,6 +89,17 @@ export const docsNav: Record<string, DocSection[]> = {
       ],
     },
     {
+      title: '例題・演習（AL TA v3.1）',
+      slug: 'examples-v3-1',
+      items: [
+        {
+          title: '同値分割テスト：従業員ウェルネスプログラムの有効パーティション数',
+          slug: 'ep-employee-wellness-program',
+          description: '条件付きパラメータを含む仕様に同値分割を適用し、有効パーティションを100%カバーする最小テストケース数を導出する例題（JSTQB AL TA v3.1）',
+        },
+      ],
+    },
+    {
       title: '例題・演習（AL TA v4.0）',
       slug: 'examples',
       items: [
