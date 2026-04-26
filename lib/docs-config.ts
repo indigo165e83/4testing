@@ -75,9 +75,9 @@ export const docsNav: Record<string, DocSection[]> = {
           ],
         },
         {
-          title: 'プロダクト品質特性(ISO/IEC 25010 2023年版)',
+          title: 'ソフトウェア品質特性のテスト（JSTQB AL TA v3.1.1 第4章）',
           slug: 'product-quality-characteristics',
-          description: 'ISO/IEC 25010（2023年版）が定義するプロダクト品質特性と副特性の一覧',
+          description: 'ISO/IEC 25010（2011年版）に基づくTA・TTA担当区分、機能適合性・使用性・相互運用性・移植性のテスト手法（JSTQB AL TA 第4章）',
           children: [
             {
               title: '使用性評価',
