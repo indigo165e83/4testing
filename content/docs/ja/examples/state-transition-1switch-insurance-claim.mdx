@@ -149,27 +149,27 @@ Accepted を起点にできる遷移：T2、T5
 
 #### T4（Activated → **Closed**）
 
-Closed を起点にできる遷移：T6、T7、T8
+T4 は遷移時に `x := act` をセットします。Closed を起点にできる遷移は T6・T7・T8 ですが、**T6 のガード条件 `[x == acc]` は x = act のため偽**となり、T4 の直後に T6 は実行できません。
 
-| 1-スイッチ | 経路 |
-|-----------|------|
-| T4 → T6 | Activated→Closed→Accepted |
-| T4 → T7 | Activated→Closed→Activated |
-| T4 → T8 | Activated→Closed→Archived |
+| 1-スイッチ | 経路 | 実行可否 |
+|-----------|------|:---:|
+| ~~T4 → T6~~ | ~~Activated→Closed→Accepted~~ | ✗（x=act, ガード偽） |
+| T4 → T7 | Activated→Closed→Activated | ✓ |
+| T4 → T8 | Activated→Closed→Archived | ✓ |
 
-小計：**3**
+小計：**2**
 
 #### T5（Accepted → **Closed**）
 
-Closed を起点にできる遷移：T6、T7、T8
+T5 は遷移時に `x := acc` をセットします。Closed を起点にできる遷移は T6・T7・T8 ですが、**T7 のガード条件 `[x == act]` は x = acc のため偽**となり、T5 の直後に T7 は実行できません。
 
-| 1-スイッチ | 経路 |
-|-----------|------|
-| T5 → T6 | Accepted→Closed→Accepted |
-| T5 → T7 | Accepted→Closed→Activated |
-| T5 → T8 | Accepted→Closed→Archived |
+| 1-スイッチ | 経路 | 実行可否 |
+|-----------|------|:---:|
+| T5 → T6 | Accepted→Closed→Accepted | ✓ |
+| ~~T5 → T7~~ | ~~Accepted→Closed→Activated~~ | ✗（x=acc, ガード偽） |
+| T5 → T8 | Accepted→Closed→Archived | ✓ |
 
-小計：**3**
+小計：**2**
 
 #### T6（Closed → **Accepted**）
 
@@ -201,42 +201,58 @@ Archived は終端ステート → 続く遷移なし
 
 ### 合計
 
-| 遷移 | 後続遷移の数 | 小計 |
+| 遷移 | 実行可能な後続遷移 | 小計 |
 |:---:|:---:|:---:|
-| T1 | 2（T2、T5） | 2 |
-| T2 | 2（T3、T4） | 2 |
-| T3 | 2（T2、T5） | 2 |
-| T4 | 3（T6、T7、T8） | 3 |
-| T5 | 3（T6、T7、T8） | 3 |
-| T6 | 2（T2、T5） | 2 |
-| T7 | 2（T3、T4） | 2 |
-| T8 | 0（終端） | 0 |
-| **合計** | | **16** |
+| T1 | T2、T5 | 2 |
+| T2 | T3、T4 | 2 |
+| T3 | T2、T5 | 2 |
+| T4 | ~~T6~~、T7、T8（T6はガード偽） | 2 |
+| T5 | T6、~~T7~~、T8（T7はガード偽） | 2 |
+| T6 | T2、T5 | 2 |
+| T7 | T3、T4 | 2 |
+| T8 | なし（終端） | 0 |
+| **合計** | | **14** |
 
 ---
 
 ## 正解
 
-**a) 16**
+**b) 14**
 
 ---
 
 ## ポイント
 
-### 1-スイッチ数の計算法
+### ガード条件による実行不可能な1スイッチ
 
-各遷移の **終点ステートの出次数（out-degree）** が、その遷移が持つ1-スイッチの数に等しくなります。
+構造上は有効なペアでも、**アクションがセットした変数値がガード条件を必ず偽にする**場合は実行不可能な1スイッチになります。
 
-```
-1-スイッチ総数 = Σ（各遷移の終点ステートの出次数）
-             = 2 + 2 + 2 + 3 + 3 + 2 + 2 + 0
-             = 16
-```
+| 実行不可能なペア | 理由 |
+|:---:|:---|
+| T4 → T6 | T4 が x := act をセット → T6 の [x == acc] が常に偽 |
+| T5 → T7 | T5 が x := acc をセット → T7 の [x == act] が常に偽 |
+
+単純に「終点ステートの出次数の合計 = 16」とするだけでは、このような**データフロー依存の実行不可能パス**を見落とします。
 
 ### 終端ステートに着目する
 
 Archived のような終端ステートからの遷移は存在しないため、T8 の1-スイッチは 0 です。終端ステートへの遷移は1-スイッチカバレッジを「打ち切る」点を見落とさないようにします。
 
-### ガード条件と変数 x の役割
+### 実行可能な1スイッチの一覧
 
-T6（goBack [x == acc]）と T7（goBack [x == act]）はどちらも Closed から出発しますが、ガード条件によって遷移先が異なります。1-スイッチカバレッジでは、T4→T6、T4→T7、T5→T6、T5→T7 のように、変数 x の値を制御したテストケースを設計して両方のガード分岐をカバーする必要があります。
+| # | 1-スイッチ | 経路 |
+|:---:|:---:|:---|
+| 1 | T1 → T2 | Applied→Accepted→Activated |
+| 2 | T1 → T5 | Applied→Accepted→Closed |
+| 3 | T2 → T3 | Accepted→Activated→Accepted |
+| 4 | T2 → T4 | Accepted→Activated→Closed |
+| 5 | T3 → T2 | Activated→Accepted→Activated |
+| 6 | T3 → T5 | Activated→Accepted→Closed |
+| 7 | T4 → T7 | Activated→Closed→Activated |
+| 8 | T4 → T8 | Activated→Closed→Archived |
+| 9 | T5 → T6 | Accepted→Closed→Accepted |
+| 10 | T5 → T8 | Accepted→Closed→Archived |
+| 11 | T6 → T2 | Closed→Accepted→Activated |
+| 12 | T6 → T5 | Closed→Accepted→Closed |
+| 13 | T7 → T3 | Closed→Activated→Accepted |
+| 14 | T7 → T4 | Closed→Activated→Closed |
