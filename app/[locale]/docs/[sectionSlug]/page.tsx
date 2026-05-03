@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, ExternalLink } from 'lucide-react'
 import { docsNav } from '@/lib/docs-config'
 
 interface PageProps {
@@ -22,6 +22,31 @@ export default async function SectionIndexPage({ params }: PageProps) {
   const section = sections.find((s) => s.slug === sectionSlug)
 
   if (!section) notFound()
+
+  if (section.externalHref) {
+    return (
+      <div>
+        <h1 className="text-2xl font-bold mb-2">{section.title}</h1>
+        <p className="text-gray-400 mb-8 not-prose">
+          下記のサイトを参照してください。
+        </p>
+        <div className="not-prose">
+          <a
+            href={section.externalHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-lg border border-white/10 px-4 py-3 transition-all hover:border-accent/40 hover:bg-white/5"
+          >
+            <div className="flex-1">
+              <div className="text-sm font-medium text-white">{section.title}</div>
+              <div className="mt-0.5 text-xs text-gray-400">{section.externalHref}</div>
+            </div>
+            <ExternalLink size={16} className="shrink-0 text-gray-500" />
+          </a>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div>

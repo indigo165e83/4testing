@@ -8,6 +8,7 @@ export interface DocItem {
 export interface DocSection {
   title: string
   slug: string
+  externalHref?: string
   items: DocItem[]
 }
 
@@ -91,48 +92,8 @@ export const docsNav: Record<string, DocSection[]> = {
     {
       title: '例題・演習（AL TA v3.1）',
       slug: 'examples-v3-1',
-      items: [
-        {
-          title: '同値分割テスト：従業員ウェルネスプログラムの有効パーティション数',
-          slug: 'ep-employee-wellness-program',
-          description: '条件付きパラメータを含む仕様に同値分割を適用し、有効パーティションを100%カバーする最小テストケース数を導出する例題（JSTQB AL TA v3.1）',
-        },
-        {
-          title: '境界値分析：境界値カバレッジの算出',
-          slug: 'bva-loyalty-points-coverage',
-          description: '顧客ロイヤリティポイントの境界値分析を題材に、2値境界値を用いたカバレッジ（網羅率）の計算方法を解説する例題（JSTQB AL TA v3.1）',
-        },        
-        {
-          title: 'デシジョンテーブル：支払いオプションのレビュー',
-          slug: 'decision-table-payment-options-review',
-          description: 'インターネットストアの支払いオプションに関するデシジョンテーブルをレビューし、論理的な不備や不一致を特定する例題です。（JSTQB AL TA v3.1）',
-        },        
-        {
-          title: 'デシジョンテーブル：モバイルアプリのダウンロード機能',
-          slug: 'decision-table-mobile-download-functionality',
-          description: '接続強度とデータ容量の境界条件を含む、モバイルアプリのダウンロード機能に関するデシジョンテーブルの例題（JSTQB AL TA v3.1）',
-        },        
-        {
-          title: '状態遷移テスト：OSスケジューラ（1スイッチカバレッジ）',
-          slug: 'state-transition-os-scheduler',
-          description: 'OSスケジューラの状態遷移モデルを題材に、1スイッチカバレッジを達成する最小テストケース数の導出を解説する例題（JSTQB AL TA v3.1）',
-        },
-        {
-          title: '状態遷移テスト：READY状態のラウンドトリップ',
-          slug: 'state-transition-ready-round-trip',
-          description: '特定の状態（READY）を起点・終点とするラウンドトリップ（ループ）を特定し、最小テストケース数を導出する例題（JSTQB AL TA v3.1）',
-        },        
-        {
-          title: 'ユースケーステスト：最少テストケース数（Easytravel）',
-          slug: 'use-case-testing-easytravel-minimum-test-cases',
-          description: 'ユースケースの基本フローと例外フローから、最小カバレッジを達成するために必要なテストケース数を導出する例題（JSTQB AL TA v3.1）',
-        },        
-        {
-          title: 'ユースケーステスト：最少テストケース数（スキルポータル）',
-          slug: 'use-case-testing-skills-portal-minimum-test-cases',
-          description: 'ユースケースの基本フロー、代替フロー、例外フローから、最小カバレッジを達成するために必要なテストケース数を導出する例題（JSTQB AL TA v3.1）',
-        },
-      ],
+      externalHref: 'https://www.indigo165e83.com/jstqb/core/advanced-ta/exercises-v3-1/',
+      items: [],
     },
     {
       title: '例題・演習（AL TA v4.0）',
