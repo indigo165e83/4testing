@@ -4,7 +4,6 @@ import { TimestampPage } from '../pages/TimestampPage';
 import { PairwisePage } from '../pages/PairwisePage';
 
 type Fixtures = {
-  locale: string;
   homePage: HomePage;
   timestampPage: TimestampPage;
   pairwisePage: PairwisePage;
@@ -17,23 +16,21 @@ type Fixtures = {
  * 各テストは beforeEach を書かずに POM インスタンスを直接受け取れる。
  */
 export const test = base.extend<Fixtures>({
-  locale: ['ja', { option: true }],
-
-  homePage: async ({ page, locale }, use) => {
+  homePage: async ({ page }, use) => {
     const p = new HomePage(page);
-    await p.goto(locale);
+    await p.goto('ja');
     await use(p);
   },
 
-  timestampPage: async ({ page, locale }, use) => {
+  timestampPage: async ({ page }, use) => {
     const p = new TimestampPage(page);
-    await p.goto(locale);
+    await p.goto('ja');
     await use(p);
   },
 
-  pairwisePage: async ({ page, locale }, use) => {
+  pairwisePage: async ({ page }, use) => {
     const p = new PairwisePage(page);
-    await p.goto(locale);
+    await p.goto('ja');
     await use(p);
   },
 });
